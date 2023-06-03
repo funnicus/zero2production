@@ -13,6 +13,5 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
     .listen(listener)?
     .run();
 
-    // No .await here!
     Ok(server)
 }
