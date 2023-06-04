@@ -6,6 +6,8 @@ cargo expand
 or
 cargo +nightly expand
 
+cargo +nightly udeps # unused deps
+
 PIPELINE:
 
 - cargo test
