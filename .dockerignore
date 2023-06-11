@@ -1,0 +1,9 @@
+.idea
+.vscode
+.env
+
+target/
+tests/
+Dockerfile
+scripts/
+migrations/
