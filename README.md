@@ -30,13 +30,19 @@ or
 You can automatically create and deploy this project as a digital ocean app using the spec.yaml at the root of this project:
 
 ```bash
+# At the root of the project
+
 doctl auth init # Log in
 
 doctl apps create --spec spec.yaml # Create the app
 
+# Incase of any updates to the spec...
+
 doctl apps list # List apps and get their IDs
 
 doctl apps update YOUR-APP-ID --spec=spec.yaml # Update the app
+
+# Remember to push any changes to github!
 ```
 
 ## If you want faster builds...
