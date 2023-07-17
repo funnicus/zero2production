@@ -25,9 +25,13 @@ For inspecting macros
 or
 **cargo +nightly expand**
 
+## Docker
+
+You can build an docker image of this application via the following command `docker build --tag zero2prod --file Dockerfile .`
+
 ## Deployement
 
-You can automatically create and deploy this project as a digital ocean app using the spec.yaml at the root of this project:
+You can automatically create and deploy this project as an digital ocean app using the spec.yaml at the root of this project:
 
 ```bash
 # At the root of the project
@@ -76,3 +80,16 @@ rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
 [target.aarch64-apple-darwin]
 rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
 ````
+
+## Linux issue with tests
+
+If you are running Linux, you might see errors like
+
+```bash
+thread 'actix-rt:worker' panicked at
+'Can not create Runtime: Os { code: 24, kind: Other, message: "Too many open files" }',
+```
+
+when you run cargo test.
+
+This is due to a limit enforced by the operating system on the maximum number of open file descriptors (including sockets) for each process - given that we are running all tests from different files as part of a single binary, we might be exceeding it. The limit is usually set to 1024, but you can raise it with ulimit -n X (e.g. `ulimit-n 10000`) to resolve the issue.
