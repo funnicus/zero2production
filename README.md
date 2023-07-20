@@ -10,6 +10,14 @@ Running the app:
 cargo watch -x check -x test -x run # Compile, lint and test on file change
 ```
 
+Database migrations:
+
+```bash
+sqlx migrate add add_status_to_subscriptions # create a new migration file, fill it with whatever commands you want
+
+SKIP_DOCKER=true ./scripts/init_db.sh # migrate, use SKIP_DOCKER if you already have an existing database you are migrating
+```
+
 Commands for testing, auditing, linting etc:
 
 - cargo test
